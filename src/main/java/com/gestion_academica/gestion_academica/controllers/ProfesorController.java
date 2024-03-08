@@ -197,13 +197,17 @@ public class ProfesorController {
             Profesor profesorAsignado = objProfesor.get();
             Asignatura asignaturaImpartida = asignaturaRepositorio.findById(idAsignatura).get();
 
-            profesorAsignado.getAsignaturas().add(asignaturaImpartida);
-            asignaturaImpartida.setProfesor(profesorAsignado);;
-
-            profesorRepositorio.save(profesorAsignado);
-            asignaturaRepositorio.save(asignaturaImpartida);
-
-            return "redirect:/profesores";
+            if(profesorAsignado.getAsignaturas().size() < 2){
+                profesorAsignado.getAsignaturas().add(asignaturaImpartida);
+                asignaturaImpartida.setProfesor(profesorAsignado);;
+    
+                profesorRepositorio.save(profesorAsignado);
+                asignaturaRepositorio.save(asignaturaImpartida);
+    
+                return "redirect:/profesores";
+            }else{
+                return "error";
+            }
         }else{
             return "error";
         }

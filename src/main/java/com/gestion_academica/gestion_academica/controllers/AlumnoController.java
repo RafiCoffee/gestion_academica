@@ -1,5 +1,6 @@
 package com.gestion_academica.gestion_academica.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.gestion_academica.gestion_academica.models.Alumno;
 import com.gestion_academica.gestion_academica.models.Asignatura;
 import com.gestion_academica.gestion_academica.models.Matricula;
+import com.gestion_academica.gestion_academica.models.Profesor;
 import com.gestion_academica.gestion_academica.models.Usuario;
 import com.gestion_academica.gestion_academica.repos.RepoAlumno;
 import com.gestion_academica.gestion_academica.repos.RepoAsignatura;
@@ -84,6 +86,27 @@ public class AlumnoController {
             modelo.addAttribute("alumno", alumnoMatriculado);
             modelo.addAttribute("asignaturas", asignaturasMatriculadas);
             return "alumnos/matriculas";
+    }
+
+    //Profesores Imparten Alumno
+
+    @GetMapping("/profesores")
+    public String profesoresAsignados(Model modelo){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String nombreAlumnoLogueado = authentication.getName();
+
+        Alumno alumnoMatriculado = alumnoRepositorio.findByUsername(nombreAlumnoLogueado);
+        List<Asignatura> asignaturasMatriculadas = alumnoMatriculado.getAsignaturas();
+        List<Profesor> profesoresAsignados = new ArrayList<>();
+
+        for(int i = 0; i < asignaturasMatriculadas.size(); i++){
+            profesoresAsignados.add(asignaturasMatriculadas.get(i).getProfesor());
+        }
+
+        modelo.addAttribute("alumno", alumnoMatriculado);
+        modelo.addAttribute("asignaturas", asignaturasMatriculadas);
+        modelo.addAttribute("profesores", profesoresAsignados);
+        return "alumnos/profesores";
     }
 
     //Añadir Alumno
@@ -199,13 +222,17 @@ public class AlumnoController {
             Alumno alumnoMatriculado = objAlumno.get();
             Asignatura asignaturaMatriculada = asignaturaRepositorio.findById(idAsignatura).get();
 
-            alumnoMatriculado.getAsignaturas().add(asignaturaMatriculada);
-            asignaturaMatriculada.getAlumnos().add(alumnoMatriculado);
+            if(asignaturaMatriculada.getAlumnos().size() < 32){
+                alumnoMatriculado.getAsignaturas().add(asignaturaMatriculada);
+                asignaturaMatriculada.getAlumnos().add(alumnoMatriculado);
+    
+                alumnoRepositorio.save(alumnoMatriculado);
+                asignaturaRepositorio.save(asignaturaMatriculada);
 
-            alumnoRepositorio.save(alumnoMatriculado);
-            asignaturaRepositorio.save(asignaturaMatriculada);
-
-            return "redirect:/alumnos";
+                return "redirect:/alumnos";
+            }else{
+                return "error";
+            }
         }else{
             return "error";
         }

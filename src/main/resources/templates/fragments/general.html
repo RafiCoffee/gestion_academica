@@ -32,7 +32,8 @@
                                     Alumnos
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
+                                    <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
                                     <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/alumnos/add">Añadir Alumno</a></li>
                                 </ul>
                                 
@@ -43,7 +44,8 @@
                                     Profesores
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="menu_modulo" class="dropdown-item" href="/profesores">Listado Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/profesores">Listado Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('ALUMNO')"><a id="menu_modulo" class="dropdown-item" href="alumnos/profesores">Listado Profesores</a></li>
                                     <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/profesores/add">Añadir Profesores</a></li>
                                 </ul>
                             </li>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestion Academica: Gestión De Profesores</title>
+  <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+  
+    <div th:replace="~{fragments/general.html :: navigation}"> </div>
+    <div class="container">
+        <h3>Profesores Que Imparten Asignaturas Al Alumno <span th:text="${alumno.nombre + ' ' + alumno.apellidos}"></span></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <td>Nombre</td>
+                <td>Apellidos</td>
+                <td>Asignatura</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="asignatura, index : ${asignaturas}">
+                    <td th:text="${profesores[index.index].nombre}"></td>
+                    <td th:text="${profesores[index.index].apellidos}"></td>
+                    <td th:text="${asignatura.nombre}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="~{fragments/general.html :: footer}"></div>
+    </div>
+</body>
+
+</html>
