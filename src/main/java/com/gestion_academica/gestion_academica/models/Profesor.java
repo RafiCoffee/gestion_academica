@@ -20,8 +20,8 @@ public class Profesor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(length = 25)
-    private String usuario;
+    @Column(length = 25, unique = true)
+    private String username;
 
     @Column(length = 100)
     private String password;
@@ -32,6 +32,9 @@ public class Profesor {
 
     @Column(length = 100)
     private String email;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'PROFESOR'")
+    private String authority;
 
     @OneToMany
     private List<Asignatura> asignaturas;

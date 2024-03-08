@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión Academica: Eliminar Un Profesor</title>
+    <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+    
+        <div th:replace="~{fragments/general.html :: navigation}"> </div>
+
+        <div class="container">
+            <h3>Eliminar Un Profesor</h3>
+
+            <form th:action="|/profesores/delete/${profesor.id}|" th:object="${profesor}" method="post">
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre: </label>
+                            <input type="text" th:field="*{nombre}"
+                                    class="form-control" disabled/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Apellido: </label>
+                            <input type="text" th:field="*{apellidos}"
+                                    class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <label class="form-label" for="email">Email:</label>
+                            <input type="email" name="email" th:field="*{email}"
+                                    class="form-control" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre de usuario: </label>
+                            <input type="text" th:field="*{username}"
+                                    class="form-control" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                            <a href="/profesores" class="btn btn-primary">Cancelar</a>
+                        </div>
+                    </div>
+            </form>
+
+            <div th:replace="~{fragments/general.html :: footer}"></div>
+        
+    </div>
+</body>
+
+</html>

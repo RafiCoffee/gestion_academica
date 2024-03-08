@@ -26,34 +26,37 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/">Inicio </a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li sec:authorize="isAuthenticated() and !hasAuthority('ALUMNO')" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Alumnos
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
-                                    <li th:authorize="hasRole('ROLE_ADMIN')"><a id="menu_enseñanza" class="dropdown-item" href="/alumnos/add">Añadir Alumno</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/alumnos/add">Añadir Alumno</a></li>
                                 </ul>
+                                
                             </li>
-                            <li class="nav-item dropdown">
+                            <li sec:authorize="isAuthenticated() and !hasAuthority('PROFESOR')" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Profesores
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a id="menu_modulo" class="dropdown-item" href="/profesores">Listado Profesores</a></li>
-                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/profesores/add">Añadir Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/profesores/add">Añadir Profesores</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Asignaturas
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="menu_modulo" class="dropdown-item" href="/asignaturas">Listado Asignaturas</a></li>
-                                    <li><a id="menu_enseñanza" class="dropdown-item" href="/asignaturas/add">Añadir Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/asignaturas">Listado Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/profesores/imparte/0">Listado Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('ALUMNO')"><a id="menu_modulo" class="dropdown-item" href="/alumnos/matriculas/0">Listado Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/asignaturas/add">Añadir Asignaturas</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -62,7 +65,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/acerca">Sobre esta Web </a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                                <a class="nav-link" href="/login">Iniciar Sesion</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()" class="nav-item">
                                 <a class="nav-link" href="/logout">Desconexión </a>
                             </li>
                         </ul>

@@ -47,7 +47,7 @@ Hay que implementar tres maestros detalle: seleccionando un profesor, sus asigna
 
 Los alumnos pueden ver sus asignaturas así como el profesorado que las imparte. El profesorado puede ver las asignaturas que imparte así como la lista de alumnos matriculados.
 
-Hay que hacer un menú en BootStrap 5.3.3 desplegable y que funcione y que, según el rol se muestran u ocultan partes. Hay que usar WebJars como hemos visto en clase.
+Hay que hacer un menú en BootStrap 5.3.3 desplegable y que funcione y que, según el rol se muestran u ocultan partes. Hay que usar WebJars.
 
 ## Creación De Los Modelos o Entities
 

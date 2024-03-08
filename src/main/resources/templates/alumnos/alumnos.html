@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestion Academica: Gestión De Alumnos</title>
+  <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+  
+    <div th:replace="~{fragments/general.html :: navigation}"> </div>
+    <div class="container">
+        <h3>Lista De Alumnos</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Teléfono</td>
+                <td>Email</td>
+                <td>Username</td>
+                <td sec:authorize="hasAuthority('GESTOR')">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="alumno: ${alumnos}">
+                    <td th:text="${alumno.nombre}"></td>
+                    <td th:text="${alumno.apellidos}"></td>
+                    <td th:text="${alumno.telefono}"></td>
+                    <td th:text="${alumno.email}"></td>
+                    <td th:text="${alumno.username}"></td>
+
+                    <td sec:authorize="hasAuthority('GESTOR')">
+                        <a class="btn btn-success" th:href="|/alumnos/edit/${alumno.id}|">Editar</a>
+                        <a class="btn btn-primary" th:href="|/alumnos/matricular/${alumno.id}|">Matricular Asignatura</a>
+                        <a class="btn btn-primary" th:href="|/alumnos/matriculas/${alumno.id}|">Asignaturas Matriculadas</a>
+                        <a class="btn btn-danger" th:href="|/alumnos/delete/${alumno.id}|">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="~{fragments/general.html :: footer}"></div>
+    </div>
+</body>
+
+</html>

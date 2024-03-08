@@ -1,38 +1,38 @@
 package com.gestion_academica.gestion_academica.models;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Asignatura {
-    
+public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    @Column(length = 30)
-    private String nombre;
+    @Column(length = 25, unique = true)
+    private String username;
 
-    @Column(length = 10)
-    private String curso;
+    @Column(length = 100)
+    private String password;
 
-    @Column(length = 30)
-    private String ciclo;
+    @Column(length = 15)
+    private String authority;
 
-    @ManyToMany(mappedBy = "asignaturas")
-    private List<Alumno> alumnos;
+    @OneToOne
+    private Gestor gestor;
 
-    @ManyToOne
+    @OneToOne
+    private Alumno alumno;
+
+    @OneToOne
     private Profesor profesor;
 }

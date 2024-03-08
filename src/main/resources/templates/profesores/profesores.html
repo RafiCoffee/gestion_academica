@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestion Academica: Gestión De Profesores</title>
+  <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+  
+    <div th:replace="~{fragments/general.html :: navigation}"> </div>
+    <div class="container">
+        <h3>Lista De Profesores</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <td>Nombre</td>
+                <td>Apellidos</td>
+                <td>Email</td>
+                <td>Username</td>
+                <td sec:authorize="hasAuthority('GESTOR')">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="profesor: ${profesores}">
+                    <td th:text="${profesor.nombre}"></td>
+                    <td th:text="${profesor.apellidos}"></td>
+                    <td th:text="${profesor.email}"></td>
+                    <td th:text="${profesor.username}"></td>
+
+                    <td sec:authorize="hasAuthority('GESTOR')">
+                        <a class="btn btn-success" th:href="|/profesores/edit/${profesor.id}|">Editar</a>
+                        <a class="btn btn-primary" th:href="|/profesores/impartir/${profesor.id}|">Impartir Asignatura</a>
+                        <a class="btn btn-primary" th:href="|/profesores/imparte/${profesor.id}|">Asignaturas Impartidas</a>
+                        <a class="btn btn-danger" th:href="|/profesores/delete/${profesor.id}|">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="~{fragments/general.html :: footer}"></div>
+    </div>
+</body>
+
+</html>

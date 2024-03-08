@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestion Academica: Matricular Un Alumno</title>
+    <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/general.html :: navigation}"> </div>
+
+    <div class="container">
+        <h3>Matricular Un Alumno</h3>
+
+        <form th:action="|/alumnos/matricular/${alumno.id}|" th:object="${matricula}" method="post">
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <p> Selecciona la asignatura en la que quieras matricular al alumno <span th:text="${alumno.nombre + ' ' + alumno.apellidos}"></span></span></p>
+                        <select th:field="*{asignaturaId}">
+                            <option th:each="asignatura: ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}">Opcion 1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Matricular Alumno</button>
+                        <a href="/alumnos" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div th:replace="~{fragments/general.html :: footer}"></div>
+
+    </div>
+</body>
+
+</html>

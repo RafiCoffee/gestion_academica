@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión Academica: Eliminar Una Asignatura</title>
+    <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+    
+        <div th:replace="~{fragments/general.html :: navigation}"> </div>
+
+        <div class="container">
+            <h3>Eliminar Una Asignatura</h3>
+
+            <form th:action="|/asignaturas/delete/${asignatura.id}|" th:object="${asignatura}" method="post">
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre: </label>
+                            <input type="text" th:field="*{nombre}"
+                                    class="form-control" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <label class="form-label" for="curso">Curso:</label>
+                            <input type="text" name="curso" th:field="*{curso}"
+                                    class="form-control" disabled/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ciclo: <input type="text" th:field="*{ciclo}"
+                                    class="form-control" disabled/></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="row g-3 m-2">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                            <a href="/asignaturas" class="btn btn-primary">Cancelar</a>
+                        </div>
+                    </div>
+            </form>
+
+            <div th:replace="~{fragments/general.html :: footer}"></div>
+        
+    </div>
+</body>
+
+</html>

@@ -20,8 +20,8 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(length = 25)
-    private String usuario;
+    @Column(length = 25, unique = true)
+    private String username;
 
     @Column(length = 100)
     private String password;
@@ -35,6 +35,9 @@ public class Alumno {
 
     @Column(length = 100)
     private String email;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'ALUMNO'")
+    private String authority;
 
     @OneToMany
     private List<Asignatura> asignaturas;

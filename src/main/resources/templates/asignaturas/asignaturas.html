@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestion Academica: Gestión De Asignaturas</title>
+  <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+  
+    <div th:replace="~{fragments/general.html :: navigation}"> </div>
+    <div class="container">
+        <h3>Lista De Asignaturas</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <td>Nombre</td>
+                <td>Curso</td>
+                <td>Ciclo</td>
+                <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="asignatura: ${asignaturas}">
+                    <td th:text="${asignatura.nombre}"></td>
+                    <td th:text="${asignatura.curso}"></td>
+                    <td th:text="${asignatura.ciclo}"></td>
+                    <td>
+                        <a class="btn btn-success" th:href="|/asignaturas/edit/${asignatura.id}|">Editar</a>
+                        <a class="btn btn-danger" th:href="|/asignaturas/delete/${asignatura.id}|">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="~{fragments/general.html :: footer}"></div>
+    </div>
+</body>
+
+</html>

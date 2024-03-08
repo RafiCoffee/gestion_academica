@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestion Academica: Asignar Un Profesor</title>
+    <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/general.html :: navigation}"> </div>
+
+    <div class="container">
+        <h3>Asignar Un Profesor</h3>
+
+        <form th:action="|/profesores/impartir/${profesor.id}|" th:object="${imparte}" method="post">
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <p> Selecciona la asignatura en la que quieras asignar al profesor <span th:text="${profesor.nombre}"></span></span></p>
+                        <select th:field="*{asignaturaId}">
+                            <option th:each="asignatura: ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Asignar Profesor</button>
+                        <a href="/profesores" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div th:replace="~{fragments/general.html :: footer}"></div>
+
+    </div>
+</body>
+
+</html>

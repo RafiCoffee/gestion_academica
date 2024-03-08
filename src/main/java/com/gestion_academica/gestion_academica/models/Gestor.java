@@ -18,8 +18,12 @@ public class Gestor {
     private Long Id;
 
     @Column(length = 25)
-    private String usuario;
+    private String username;
 
     @Column(length = 100)
     private String password;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'GESTOR'")
+    private String authority;
+
 }
