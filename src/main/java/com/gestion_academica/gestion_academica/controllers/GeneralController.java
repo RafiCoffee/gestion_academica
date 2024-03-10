@@ -4,26 +4,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
 @Controller
 public class GeneralController {
+    
     @GetMapping("/")
-    public String showIndex() {
+    public String index() {
         return "index";
     }
 
     @GetMapping("/ayuda")
-    public String showAyuda() {
+    public String ayuda() {
         return "ayuda";
     }
 
     @GetMapping("/acerca")
-    public String showAcerca() {
+    public String acerca() {
         return "acerca";
     }
-    
+
     @GetMapping("/error")
-    public String showError() {
+    public String error() {
         return "error";
     }
 
