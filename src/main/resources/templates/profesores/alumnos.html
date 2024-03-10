@@ -10,35 +10,24 @@
   
     <div th:replace="~{fragments/general.html :: navigation}"> </div>
     <div class="container">
-        <h3>Lista De Alumnos</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Teléfono</td>
-                <td>Email</td>
-                <td>Username</td>
-                <td sec:authorize="hasAuthority('GESTOR')">Acciones</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="alumno: ${alumnos}">
-                    <td th:text="${alumno.nombre}"></td>
-                    <td th:text="${alumno.apellidos}"></td>
-                    <td th:text="${alumno.telefono}"></td>
-                    <td th:text="${alumno.email}"></td>
-                    <td th:text="${alumno.username}"></td>
-
-                    <td sec:authorize="hasAuthority('GESTOR')">
-                        <a class="btn btn-success" th:href="|/alumnos/edit/${alumno.id}|">Editar</a>
-                        <a class="btn btn-primary" th:href="|/alumnos/matricular/${alumno.id}|">Matricular Asignatura</a>
-                        <a class="btn btn-primary" th:href="|/alumnos/matriculas/${alumno.id}|">Asignaturas Matriculadas</a>
-                        <a class="btn btn-danger" th:href="|/alumnos/delete/${alumno.id}|">Borrar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <h3>Alumnos Matriculados En Las Asignaturas Del Profesor <span th:text="${profesor.nombre + ' ' + profesor.apellidos}"></span></h3>
+        <div th:each="asignatura, index : ${asignaturas}">
+            <h4 th:text="${asignatura.nombre}"></h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Apellidos</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="alumno : ${alumnos[index.index]}">
+                        <td th:text="${alumno.nombre}"></td>
+                        <td th:text="${alumno.apellidos}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div th:replace="~{fragments/general.html :: footer}"></div>
     </div>
