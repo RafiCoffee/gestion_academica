@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -39,6 +39,6 @@ public class Alumno {
     @Column(columnDefinition = "VARCHAR(255) DEFAULT 'ALUMNO'")
     private String authority;
 
-    @OneToMany
+    @ManyToMany
     private List<Asignatura> asignaturas;
 }

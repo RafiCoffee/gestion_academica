@@ -33,7 +33,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
-                                    <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
+                                    <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/profesores/alumnos">Listado Alumnos</a></li>
                                     <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/alumnos/add">Añadir Alumno</a></li>
                                 </ul>
                                 
